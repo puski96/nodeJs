@@ -5,10 +5,13 @@ const hbs = require("hbs");
 const forecast = require("./utils/forecast");
 const geoCode = require("./utils/geoCode");
 
+const app = express();
+
+const port = process.env.PORT || 4000;
+
 const publicDirectory = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
 const partialPath = path.join(__dirname, "../templates/partials");
-const app = express();
 
 app.use(express.static(publicDirectory));
 
@@ -81,6 +84,6 @@ app.get("*", (req, res) => {
   res.render("404", { title: "404", message: "My 404 page" });
 });
 
-app.listen(4000, () => {
-  console.log("Server running on port 4000");
+app.listen(port, () => {
+  console.log("Server running on port " + port);
 });
